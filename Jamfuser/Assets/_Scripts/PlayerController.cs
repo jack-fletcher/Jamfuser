@@ -6,6 +6,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private static PlayerController _instance;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static PlayerController Instance
+    {
+        get { return _instance; }
+    }
+
     [SerializeField] private Animator m_deathScreenAnim;
     /// <summary>
     /// Health of player
@@ -18,8 +31,8 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] private Sprite[] m_playerSprites;
-
+    [SerializeField] public Color[] m_colours;
+    [SerializeField] public GameObject[] m_bodyParts;
     [SerializeField] private List<string> m_tagsToRaycast;
     private float m_xf;
 
@@ -38,15 +51,34 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        if (Instance != null & !this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         m_rb = this.GetComponent<Rigidbody2D>();
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetColour();
     }
 
+    public void SetColour()
+    {
+        for (int i = 0; i < m_bodyParts.Length; i++)
+        {
+            if (m_colours[i] != null)
+            {
+                m_bodyParts[i].GetComponent<SpriteRenderer>().color = m_colours[i];
+            }
+        }
+    }
     void Update()
     {
         Pose();
@@ -104,7 +136,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Q pressed");
-            GetComponent<SpriteRenderer>().color = Color.red;
+          //  GetComponent<SpriteRenderer>().color = Color.red;
             ScoreManager.Instance.ScoreUpdate(5);
         }
 
@@ -112,7 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("E pressed");
 
-            GetComponent<SpriteRenderer>().color = Color.green;
+           // GetComponent<SpriteRenderer>().color = Color.green;
             ScoreManager.Instance.ScoreUpdate(8);
 
         }
@@ -125,7 +157,7 @@ public class PlayerController : MonoBehaviour
             //ScoreManager.Instance.ScoreUpdate(10);
             Debug.Log(ScoreManager.Instance.m_highScore);
         }
-
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("W pressed");
@@ -134,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
+#endif
 
     public void TakeDamage(int damage)
     {

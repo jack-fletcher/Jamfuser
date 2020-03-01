@@ -40,14 +40,14 @@ public class ObstacleAI : MonoBehaviour
                 break;
             case AI_Type.MovingVertical:
                 //Move vertical
-                m_speed = 2;
+                m_speed = 1;
 
                 m_position1 = this.transform.position;
                 m_position2 = this.transform.position + new Vector3(0,10,0);
                 break;
             case AI_Type.MovingHorizontal:
                 //Move Horizontal
-                m_speed = 2;
+                m_speed = 1;
                 m_position1 = new Vector3(21, 0, 0);
                 m_position2 = new Vector3(6, 0, 0);
                 break;
