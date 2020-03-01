@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
                 //  GetComponent<SpriteRenderer>().color = Color.red;
                 ScoreManager.Instance.ScoreUpdate(5);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Tpose");
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.green;
                 ScoreManager.Instance.ScoreUpdate(8);
-                StartCoroutine("ResetPose", "UltimatePose");
+                StartCoroutine("ResetPose", "Ultimate Pose");
             }
 
             if (Input.GetKeyDown(KeyCode.W))
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Ballet");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
 
                 //  GetComponent<SpriteRenderer>().color = Color.red;
                 ScoreManager.Instance.ScoreUpdate(5);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Dab");
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.green;
                 ScoreManager.Instance.ScoreUpdate(8);
-                StartCoroutine("ResetPose", "UltimatePose");
+                StartCoroutine("ResetPose", "Karate");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Chill");
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Relaxed");
             }
 
             if (Input.GetKeyDown(KeyCode.Z))
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.green;
                 ScoreManager.Instance.ScoreUpdate(8);
-                StartCoroutine("ResetPose", "UltimatePose");
+                StartCoroutine("ResetPose", "Meditate");
             }
 
             if (Input.GetKeyDown(KeyCode.X))
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Superman");
             }
 
             if (Input.GetKeyDown(KeyCode.C))
@@ -226,21 +226,42 @@ public class PlayerController : MonoBehaviour
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Flex");
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Swim");
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
 
                 // GetComponent<SpriteRenderer>().color = Color.yellow;
                 ScoreManager.Instance.ScoreUpdate(10);
-                StartCoroutine("ResetPose", "TPose");
+                StartCoroutine("ResetPose", "Ice Skate");
+            }
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "Crane");
+            }
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "Praise");
+            }
+            if (Input.GetKeyDown(KeyCode.F3))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "Run");
             }
         }
 #if UNITY_EDITOR
