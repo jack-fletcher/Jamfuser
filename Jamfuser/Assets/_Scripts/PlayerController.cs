@@ -277,6 +277,8 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         m_health -= damage;
+        SoundManager.Instance.m_audioSource.clip = SoundManager.Instance.m_DeathSound;
+        SoundManager.Instance.m_audioSource.Play();
         if (m_health <= 0)
         {
             Die();
@@ -289,6 +291,7 @@ public class PlayerController : MonoBehaviour
         this.gameObject.SetActive(false);
         ScoreManager.Instance.isFalling = false;
         Serialization.Instance.SaveData();
+
         m_deathScreenAnim.SetTrigger("isDead");
     }
 
