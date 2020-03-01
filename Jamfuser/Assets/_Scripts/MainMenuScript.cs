@@ -14,7 +14,7 @@ public class MainMenuScript : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Play");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OptionsButton()
@@ -24,7 +24,9 @@ public class MainMenuScript : MonoBehaviour
 
     public void QuitButton()
     {
+#if UNITY_EDITOR
         Debug.Log("Quit");
-        //Application.Quit();
+#endif
+        Application.Quit();
     }
 }

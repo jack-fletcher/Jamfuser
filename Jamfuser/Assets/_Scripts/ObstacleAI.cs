@@ -109,6 +109,8 @@ public class ObstacleAI : MonoBehaviour
                 break;
             case AI_Type.Collectable:
                 ScoreManager.Instance.ScoreUpdate(m_scoreToGive);
+                SoundManager.Instance.m_audioSource.clip = SoundManager.Instance.m_collectSound;
+                SoundManager.Instance.m_audioSource.Play();
                 this.gameObject.SetActive(false);
                 break;
         }
