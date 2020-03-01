@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool m_coroutine_Running = false;
     private float m_xf;
     private float _timer = 1.0f;
+    [SerializeField] private TextMeshProUGUI m_flavorText;
     /// <summary>
     /// Equivalent to our gravity value
     /// </summary>
@@ -299,6 +300,7 @@ public class PlayerController : MonoBehaviour
     {
         m_coroutine_Running = true;
         m_anim.SetTrigger(name);
+        m_flavorText.GetComponent<FlavourScript>().ShowText(name);
         yield return new WaitForSeconds(1f);
         m_coroutine_Running = false;
         m_anim.ResetTrigger(name);
