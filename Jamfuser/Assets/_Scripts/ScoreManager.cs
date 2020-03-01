@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     /// 
     /// </summary>
     private static ScoreManager _instance;
+    private float _timer = 1f;
     /// <summary>
     /// 
     /// </summary>
@@ -43,6 +44,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         m_scoreText.text = "Score: 0";
+        _timer = 0;
 
     }
     /// <summary>
@@ -60,7 +62,6 @@ public class ScoreManager : MonoBehaviour
     /// <returns></returns>
     public int GetScore()
     {
-        Debug.Log("M score is: " + m_score);
         return m_score;
     }
     /// <summary>
@@ -77,7 +78,12 @@ public class ScoreManager : MonoBehaviour
 
         if (isFalling == true)
         {
-            m_score++;
+            if (Time.time >= _timer)
+            {
+                m_score++;
+                _timer = Mathf.FloorToInt(Time.time) + 1;
+            }
+
             m_score += addition;
             m_scoreText.text = "Score: " + m_score;
         }
