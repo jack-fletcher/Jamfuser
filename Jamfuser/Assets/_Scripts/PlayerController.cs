@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Color[] m_colours;
     [SerializeField] public GameObject[] m_bodyParts;
     [SerializeField] private List<string> m_tagsToRaycast;
+    [SerializeField] private Animator m_anim;
+
     private float m_xf;
 
     /// <summary>
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
         }
 
         m_rb = this.GetComponent<Rigidbody2D>();
+        m_anim = this.GetComponent<Animator>();
 
     }
     // Start is called before the first frame update
@@ -138,15 +141,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Q pressed");
           //  GetComponent<SpriteRenderer>().color = Color.red;
             ScoreManager.Instance.ScoreUpdate(5);
+            m_anim.SetTrigger("TPose");
+            StartCoroutine("ResetPose", "TPose");
         }
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("E pressed");
 
            // GetComponent<SpriteRenderer>().color = Color.green;
             ScoreManager.Instance.ScoreUpdate(8);
-
+            m_anim.SetTrigger("UltimatePose");
+            StartCoroutine("ResetPose", "UltimatePose");
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -156,6 +161,8 @@ public class PlayerController : MonoBehaviour
             // GetComponent<SpriteRenderer>().color = Color.yellow;
             //ScoreManager.Instance.ScoreUpdate(10);
             Debug.Log(ScoreManager.Instance.m_highScore);
+            m_anim.SetTrigger("TPose");
+            StartCoroutine("ResetPose", "TPose");
         }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
@@ -184,5 +191,11 @@ public class PlayerController : MonoBehaviour
         ScoreManager.Instance.isFalling = false;
         Serialization.Instance.SaveData();
         m_deathScreenAnim.SetTrigger("isDead");
+    }
+
+    IEnumerator ResetPose(string name)
+    {
+        yield return new WaitForSeconds(2f);
+        m_anim.ResetTrigger(name);
     }
 }

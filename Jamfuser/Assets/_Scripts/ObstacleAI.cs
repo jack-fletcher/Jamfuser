@@ -48,8 +48,8 @@ public class ObstacleAI : MonoBehaviour
             case AI_Type.MovingHorizontal:
                 //Move Horizontal
                 m_speed = 1;
-                m_position1 = new Vector3(21, 0, 0);
-                m_position2 = new Vector3(6, 0, 0);
+                m_position1 = new Vector3(23, this.transform.position.y, 0);
+                m_position2 = new Vector3(4, this.transform.position.y, 0);
                 break;
             case AI_Type.Collectable:
                 //Do nothing
