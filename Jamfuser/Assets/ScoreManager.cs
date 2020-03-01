@@ -60,7 +60,6 @@ public class ScoreManager : MonoBehaviour
     /// <returns></returns>
     public int GetScore()
     {
-        Debug.Log("M score is: " + m_score);
         return m_score;
     }
     /// <summary>

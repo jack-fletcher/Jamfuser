@@ -20,12 +20,14 @@ public class SceneM : MonoBehaviour
     public void MainMenu()
     {
         Debug.Log("Main Menu Pressed");
-        //SceneManager.LoadScene("MainMenu");
+        //Loads main menu
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     public void Restart()
     {
         Debug.Log("Restart pressed");
-        //SceneManager.LoadScene("MainScene");
+        ///Loads current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
