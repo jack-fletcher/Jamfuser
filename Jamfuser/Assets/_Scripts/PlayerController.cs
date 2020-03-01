@@ -35,13 +35,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject[] m_bodyParts;
     [SerializeField] private List<string> m_tagsToRaycast;
     [SerializeField] private Animator m_anim;
-
+    private bool m_coroutine_Running = false;
     private float m_xf;
-
+    private float _timer = 1.0f;
     /// <summary>
     /// Equivalent to our gravity value
     /// </summary>
-    private float m_yf;
+    [SerializeField] private float m_yf;
 
     private float m_zf;
 
@@ -103,7 +103,17 @@ public class PlayerController : MonoBehaviour
 
             if (_isFalling == true)
             {
-            ScoreManager.Instance.isFalling = true;            }
+            ScoreManager.Instance.isFalling = true;
+            float yv = transform.rotation.z + 3;
+            transform.Rotate(0, 0, yv );
+
+                if (Time.time >= _timer)
+                {
+                    m_yf--;
+                    _timer = Mathf.FloorToInt(Time.time) + 1;
+                }
+                
+              }
             else
             {
             ScoreManager.Instance.isFalling = false;
@@ -136,45 +146,113 @@ public class PlayerController : MonoBehaviour
 
     private void Pose()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!m_coroutine_Running)
         {
-            Debug.Log("Q pressed");
-          //  GetComponent<SpriteRenderer>().color = Color.red;
-            ScoreManager.Instance.ScoreUpdate(5);
-            m_anim.SetTrigger("TPose");
-            StartCoroutine("ResetPose", "TPose");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("E pressed");
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
 
-           // GetComponent<SpriteRenderer>().color = Color.green;
-            ScoreManager.Instance.ScoreUpdate(8);
-            m_anim.SetTrigger("UltimatePose");
-            StartCoroutine("ResetPose", "UltimatePose");
-        }
+                //  GetComponent<SpriteRenderer>().color = Color.red;
+                ScoreManager.Instance.ScoreUpdate(5);
+                StartCoroutine("ResetPose", "TPose");
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("W pressed");
 
-            // GetComponent<SpriteRenderer>().color = Color.yellow;
-            //ScoreManager.Instance.ScoreUpdate(10);
-            Debug.Log(ScoreManager.Instance.m_highScore);
-            m_anim.SetTrigger("TPose");
-            StartCoroutine("ResetPose", "TPose");
+                // GetComponent<SpriteRenderer>().color = Color.green;
+                ScoreManager.Instance.ScoreUpdate(8);
+                StartCoroutine("ResetPose", "UltimatePose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+
+                //  GetComponent<SpriteRenderer>().color = Color.red;
+                ScoreManager.Instance.ScoreUpdate(5);
+                StartCoroutine("ResetPose", "TPose");
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+
+
+                // GetComponent<SpriteRenderer>().color = Color.green;
+                ScoreManager.Instance.ScoreUpdate(8);
+                StartCoroutine("ResetPose", "UltimatePose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+
+
+                // GetComponent<SpriteRenderer>().color = Color.green;
+                ScoreManager.Instance.ScoreUpdate(8);
+                StartCoroutine("ResetPose", "UltimatePose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
+                ScoreManager.Instance.ScoreUpdate(10);
+                StartCoroutine("ResetPose", "TPose");
+            }
         }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("W pressed");
 
             TakeDamage(1);
 
         }
-    }
+    
 #endif
-
+    }
     public void TakeDamage(int damage)
     {
         m_health -= damage;
@@ -195,7 +273,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ResetPose(string name)
     {
-        yield return new WaitForSeconds(2f);
+        m_coroutine_Running = true;
+        m_anim.SetTrigger(name);
+        yield return new WaitForSeconds(1f);
+        m_coroutine_Running = false;
         m_anim.ResetTrigger(name);
     }
 }

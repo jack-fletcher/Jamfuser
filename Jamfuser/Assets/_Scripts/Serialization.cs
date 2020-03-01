@@ -69,10 +69,13 @@ public class Serialization : MonoBehaviour
             LoadData();
         }
     }
+    
 }
 
 [System.Serializable]
 public class PlayerData
-{
+{   /// <summary>
+    /// 
+    /// </summary>
     public int highscore = 0;
 }
